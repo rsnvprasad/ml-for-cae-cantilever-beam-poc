@@ -293,7 +293,10 @@ if predict_clicked:
             with st.expander("Metrics Interpretation Guide"):
 
                 st.markdown("### R² (Coefficient of Determination)")
-                st.latex(r"R^2 = 1 - \frac{\sum (y_i - \hat{y}_i)^2}{\sum (y_i - \bar{y})^2}")
+                st.latex(
+                    r"R^2 = 1 - \frac{\sum (y_i - \hat{y}_i)^2}{\sum (y_i - \bar{y})^2}"
+                )
+
                 st.markdown("""
             Where:
 
@@ -301,9 +304,7 @@ if predict_clicked:
             - `ŷᵢ` = predicted value  
             - `ȳ` = mean of actual values  
             - `n` = number of samples
-            """)
 
-                st.markdown("""
             Measures how well the model explains the response variation.
 
             **Interpretation:**
@@ -316,52 +317,32 @@ if predict_clicked:
             - Maximize R² (closer to 1)
 
             ---
-
-            ### MAE (Mean Absolute Error)
             """)
-                st.latex(r"MAE = \frac{1}{n}\sum |y_i - \hat{y}_i|")
+
+                st.markdown("### MAE (Mean Absolute Error)")
+                st.latex(r"MAE = \frac{1}{n}\sum_{i=1}^{n}|y_i-\hat{y}_i|")
+
                 st.markdown("""
             Average magnitude of prediction error.
 
             Example:
 
-            If MAE = 20 MPa for stress,
-
-            the prediction differs from the actual value by about 20 MPa on average.
+            If MAE = 20 MPa for stress, the prediction differs from the actual value by about 20 MPa on average.
 
             Engineering goal:
             - Lower is better
             - Easier to interpret physically
 
             ---
-
-            ### RMSE (Root Mean Square Error)
             """)
-                st.latex(r"RMSE = \sqrt{\frac{1}{n}\sum (y_i - \hat{y}_i)^2}")
+
+                st.markdown("### RMSE (Root Mean Square Error)")
+                st.latex(
+                    r"RMSE = \sqrt{\frac{1}{n}\sum_{i=1}^{n}(y_i-\hat{y}_i)^2}"
+                )
+
                 st.markdown("""
             Similar to MAE, but penalizes larger prediction errors more strongly.
-
-            Engineering goal:
-            - Lower is better
-            - Useful for detecting large prediction deviations
-
-            ---
-
-            ### General Engineering Interpretation
-
-            Ideal model behavior:
-
-            -> High R²  
-            -> Low MAE  
-            -> Low RMSE  
-
-            However, model selection should also consider:
-
-            - Generalization performance
-            - Fair/Edge validation behavior
-            - Physical consistency
-            - Engineering plausibility
-            """)
 
             Engineering goal:
             - Lower is better
@@ -1106,7 +1087,7 @@ if predict_clicked:
 
 else:
     with tab_predict:
-        st.info("Enter input values in the sidebar and click Predict.")
+        st.info("Enter input values and click Predict.")
 
     with tab_credibility:
         st.info("Run a prediction first to view model credibility details.")
