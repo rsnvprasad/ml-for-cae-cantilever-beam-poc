@@ -41,12 +41,12 @@ with left_col:
 
 with right_col:
     with st.container(border=True):
-        st.markdown("#### Input Parameters")
-        L_mm = st.number_input("Length L (mm)", value=620.0)
-        b_mm = st.number_input("Width b (mm)", value=54.0)
-        h_mm = st.number_input("Height h (mm)", value=24.0)
-        E_MPa = st.number_input("Elastic Modulus E (MPa)", value=165000.0)
-        F_N = st.number_input("Force F (N)", value=1100.0)
+        st.markdown("#### Choose Input Parameters for prediction")
+        L_mm = st.number_input("Length - L(mm)", value=620.0)
+        b_mm = st.number_input("Width - b(mm)", value=54.0)
+        h_mm = st.number_input("Height - h(mm)", value=24.0)
+        E_MPa = st.number_input("Elastic Modulus - E(MPa)", value=165000.0)
+        F_N = st.number_input("Force - F(N)", value=1100.0)
 
         predict_clicked = st.button("Predict", use_container_width=True)
 
@@ -141,7 +141,7 @@ if predict_clicked:
                 "One or more inputs are outside the trained design space. Predictions may be less reliable."
             )
 
-        st.subheader("Prediction Comparison")
+        st.subheader("Predictions Comparison")
 
         st.success(
             f"🏆 Best Deflection Model: {best_deflection} "
@@ -184,7 +184,7 @@ if predict_clicked:
             For stress, **{best_stress}** gives the closest prediction with
             **{stress_error:.2f}% error**.
 
-            This suggests that, for this specific design point, the deflection response is
+            This suggests that, for this specific selected design, the deflection response is
             better represented by a **{deflection_family}** approach, while the stress
             response is better represented by a **{stress_family}** approach.
 
@@ -204,11 +204,16 @@ if predict_clicked:
         Learn global relationships and general trends across the design space.
 
 
-        • Interpolation models:
-        RBF Ineterpolators or Surrogate Model or Response Surface Models (RSM)
+        • Interpolation / Surrogate Models:
+        RBF Interpolators (one type of surrogate model)
+
+        Examples of surrogate methods:
+        - RBF Interpolators
+        - Response Surface Models (RSM)
+        - Kriging models
 
         Purpose:
-        Estimate responses using neighboring known design points and preserve local behavior.
+        Estimate responses from known design points while preserving local response behavior.
 
 
         Engineering interpretation:
@@ -218,7 +223,7 @@ if predict_clicked:
         The intention is not to identify one universally best method, but to understand which modeling philosophy better represents the engineering response.
         """)
 
-        st.subheader("Input Range Check")
+        st.subheader("Inputs Range Check")
 
         range_table = []
         for key, item in range_results.items():
@@ -244,7 +249,8 @@ if predict_clicked:
         st.markdown(
             """
             Model trust should not come only from one prediction. It should also consider
-            how each model performed on historical validation/test data.
+            how each model performed on validation, unseen test data, and additional engineering 
+            validation studies.
 
             In this study, the journey started with **Linear Regression** as a baseline,
             then progressed through **Random Forest, Gradient Boosting, XGBoost,
@@ -288,6 +294,15 @@ if predict_clicked:
 
                 st.markdown("""
             ### R² (Coefficient of Determination)
+            st.latex(r"R^2 = 1 - \frac{\sum (y_i - \hat{y}_i)^2}{\sum (y_i - \bar{y})^2}")
+            st.markdown("""
+            Where:
+
+            - `yᵢ` = actual value  
+            - `ŷᵢ` = predicted value  
+            - `ȳ` = mean of actual values  
+            - `n` = number of samples
+            """)
 
             Measures how well the model explains the response variation.
 
@@ -303,6 +318,7 @@ if predict_clicked:
             ---
 
             ### MAE (Mean Absolute Error)
+            st.latex(r"MAE = \frac{1}{n}\sum |y_i - \hat{y}_i|")
 
             Average magnitude of prediction error.
 
@@ -319,7 +335,7 @@ if predict_clicked:
             ---
 
             ### RMSE (Root Mean Square Error)
-
+            st.latex(r"RMSE = \sqrt{\frac{1}{n}\sum (y_i - \hat{y}_i)^2}")
             Similar to MAE, but penalizes larger prediction errors more strongly.
 
             Engineering goal:
@@ -379,11 +395,9 @@ if predict_clicked:
 
                 ### Train vs Validation Loss
 
-                Training loss:
-                • Performance on training data
+                Training loss -> Performance on training data
 
-                Validation loss:
-                • Performance on unseen validation data
+                Validation loss -> Performance on unseen validation data
 
                 Typical interpretation:
 
@@ -398,7 +412,7 @@ if predict_clicked:
 
                 ---
 
-                ### Learning Rate Convergence
+                ### Learning Rate (LR) Convergence
 
                 Learning rate controls how large each optimization step becomes.
 
@@ -1004,7 +1018,7 @@ if predict_clicked:
 
 
             **Interpolation Models**\n
-            (Radial Basis Function (RBF) Interpolators or Response Surface Models (RSM))
+            (Radial Basis Function (RBF) Interpolators Models (RSM))
 
             Purpose:
             - Estimate outputs using neighboring known design points
