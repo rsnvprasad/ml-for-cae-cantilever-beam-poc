@@ -1,0 +1,91 @@
+# Virtual environments
+.venv/
+venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Streamlit
+.streamlit/secrets.toml
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary outputs
+outputs/metrics/*.csv
+outputs/metrics/*.json
+
+# IDE
+.vscode/
+.idea/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Logs
+*.log
+
+# Build artifacts
+*.pkl
+*.joblib
+
+# Folders
+notion_pages/
+
+# Training / experiment folders
+data/
+models/
+outputs/metrics/
+outputs/predictions/
+outputs/reports/
+outputs/feature_engineering/
+
+# Ignore experiment/training plot folders
+outputs/plots/cv_neural_network_*/
+outputs/plots/train_*/
+outputs/plots/train_gradient_boosting_v1/
+outputs/plots/train_linear_model_v2_feature_engineered/
+outputs/plots/train_random_forest*/
+outputs/plots/train_rbf_interpolator_v1/
+outputs/plots/train_xgboost_v1/
+
+# App backups
+app/Backup/
+app/*Backup*.py
+app/*_Backup*.py
+app/app\ _Backup_01.py
+
+# Experiment / training scripts not required for app runtime
+src/train_*.py
+src/cross_validate_*.py
+src/compare_*.py
+src/data_generation_*.py
+src/evaluate_models.py
+src/explore_dataset.py
+src/feature_engineering_v1.py
+src/final_physics_vs_ml_comparison*.py
+src/generate_combined_fair_edge_workbook_v1.py
+src/generate_story_plots.py
+src/sensitivity_analysis*.py
+src/update_experiment_tracker.py
+src/visualize_cv_fold_metrics.py
+src/train_rbf_kernel_comparison_v1.py
+src/utils.py
+src/cross_validation_model_comparison_v1.py
+
+# Validation outputs not required for app runtime
+outputs/validation/
+
+# Extra sensitivity plots not used by app
+outputs/plots/sensitivity_analysis/*.png
+!outputs/plots/sensitivity_analysis/all_features_pearson_heatmap.png
+!outputs/plots/sensitivity_analysis/all_features_spearman_heatmap.png
+!outputs/plots/sensitivity_analysis/transformed_L_mm_cubed_vs_deflection_mm.png
+!outputs/plots/sensitivity_analysis/transformed_inv_I_mm4_vs_deflection_mm.png
+!outputs/plots/sensitivity_analysis/transformed_inv_h_mm_sq_vs_stress_MPa.png
+!outputs/plots/sensitivity_analysis/F_N_vs_stress_MPa.png
+
+# Ignore box plots
+outputs/plots/metrics_from_data_generation/box_*.png

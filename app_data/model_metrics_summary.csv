@@ -1,0 +1,9 @@
+Model,Target,Split,R2,MAE,RMSE,Notes
+Random Forest,Deflection,Test,0.887989,41.794512,132.653309,Tuned RF model
+XGBoost,Deflection,Test,0.916718,30.701897,114.383481,XGB baseline
+Neural Network,Deflection,Test,0.712588,60.424186,212.491239,Compact NN
+RBF Interpolator,Deflection,Test,0.985452,10.49188,47.80686,Cubic RBF
+Random Forest,Stress,Test,0.933826,76.060999,218.226685,Tuned RF model
+XGBoost,Stress,Test,0.960018,53.246808,169.627161,XGB baseline
+Neural Network,Stress,Test,0.962778,74.675446,163.667436,Compact NN
+RBF Interpolator,Stress,Test,0.991438,19.40565,78.49583,Cubic RBF

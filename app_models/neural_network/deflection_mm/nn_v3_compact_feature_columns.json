@@ -1,0 +1,19 @@
+[
+    "L_mm",
+    "b_mm",
+    "h_mm",
+    "E_MPa",
+    "F_N",
+    "L_cu",
+    "h_sq",
+    "h_cu",
+    "b_h2",
+    "b_h3",
+    "I_calc",
+    "inv_E",
+    "inv_I",
+    "F_L",
+    "F_L3",
+    "F_over_E",
+    "slenderness"
+]
