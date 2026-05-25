@@ -54,6 +54,17 @@ ml-for-cae-cantilever-beam-poc/
 └── readme.md
 ```
 
+## Screenshots
+
+### Home Screen
+![Home](app_data/screenshots/home_page.png)
+
+### Prediction Results
+![Prediction Results](app_data/screenshots/prediction_results.png)
+
+### Methodology
+![Methodology](app_data/screenshots/methodology.png)
+
 ## Disclaimer
 
 This project does not replace conventional CAE or engineering validation.
