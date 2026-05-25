@@ -1024,7 +1024,7 @@ if predict_clicked:
 
 
             **Interpolation Models**\n
-            (Radial Basis Function (RBF) Interpolators Models (RSM))
+            (Radial Basis Function (RBF) Interpolators Models)
 
             Purpose:
             - Estimate outputs using neighboring known design points
