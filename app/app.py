@@ -32,24 +32,23 @@ st.markdown(
     """
 )
 
-st.sidebar.header("Input Parameters")
 
-L_mm = st.sidebar.number_input("Length L (mm)", min_value=1.0, value=620.0, step=10.0)
-b_mm = st.sidebar.number_input("Width b (mm)", min_value=1.0, value=54.0, step=1.0)
-h_mm = st.sidebar.number_input("Height h (mm)", min_value=1.0, value=24.0, step=1.0)
-E_MPa = st.sidebar.number_input("Elastic Modulus E (MPa)", min_value=1.0, value=165000.0, step=1000.0)
-F_N = st.sidebar.number_input("Force F (N)", min_value=1.0, value=1100.0, step=50.0)
+left_col, right_col = st.columns([1.2, 1])
 
-predict_clicked = st.sidebar.button("Predict")
+with left_col:
+    st.image("app_data/Beam.png", use_container_width=True)
+    st.caption("Cantilever beam geometry and loading setup used for the ML study")
 
-col1, col2, col3 = st.columns([1,4,1])
+with right_col:
+    with st.container(border=True):
+        st.markdown("#### Input Parameters")
+        L_mm = st.number_input("Length L (mm)", value=620.0)
+        b_mm = st.number_input("Width b (mm)", value=54.0)
+        h_mm = st.number_input("Height h (mm)", value=24.0)
+        E_MPa = st.number_input("Elastic Modulus E (MPa)", value=165000.0)
+        F_N = st.number_input("Force F (N)", value=1100.0)
 
-with col2:
-    st.image(
-        "app_data/Beam.png",
-        caption="Cantilever beam geometry and loading setup used for the ML study",
-        width=600,
-    )
+        predict_clicked = st.button("Predict", use_container_width=True)
 
 tab_predict, tab_credibility, tab_methodology = st.tabs(
     ["Prediction Explorer", "Model Credibility", "Methodology"]
@@ -344,6 +343,85 @@ if predict_clicked:
             - Physical consistency
             - Engineering plausibility
             """)
+                
+            with st.expander("View Neural Network Training Behavior"):
+
+                st.markdown("""
+                ### Neural Network Training Behavior
+
+                Unlike tree-based models, Neural Networks learn through iterative optimization.
+                During training, model performance is monitored using loss functions and learning-rate behavior.
+
+                ---
+
+                ### Loss Function
+
+                The loss function measures how far predictions are from actual values.
+
+                Typical behavior:
+
+                • Higher loss → predictions are farther from actual values  
+                • Lower loss → predictions are closer to actual values  
+                • Goal → minimize loss during training
+
+                Common loss functions:
+
+                • Mean Squared Error (MSE)  
+                • Mean Absolute Error (MAE)
+
+                Engineering interpretation:
+
+                • Continuous reduction in loss indicates learning progress  
+                • Large fluctuations can indicate unstable learning  
+                • Nearly constant loss may indicate underfitting
+
+                ---
+
+                ### Train vs Validation Loss
+
+                Training loss:
+                • Performance on training data
+
+                Validation loss:
+                • Performance on unseen validation data
+
+                Typical interpretation:
+
+                ✔ Train loss ↓ and Validation loss ↓
+                → Good learning and generalization
+
+                ⚠ Train loss ↓ and Validation loss ↑
+                → Possible overfitting
+
+                ⚠ Both losses remain high
+                → Possible underfitting
+
+                ---
+
+                ### Learning Rate Convergence
+
+                Learning rate controls how large each optimization step becomes.
+
+                Engineering interpretation:
+
+                • Very high learning rate:
+                - Faster learning
+                - Can overshoot optimum solution
+
+                • Very low learning rate:
+                - Stable learning
+                - Slow convergence
+
+                • Adaptive learning rate:
+                - Starts larger and gradually reduces
+                - Often improves convergence stability
+
+                In this project:
+
+                • Adam optimizer was used
+                • Early stopping monitored validation behavior
+                • Learning-rate reduction helped stabilize convergence
+                """)
 
             with st.expander("View Model Hyperparameters"):
                 hyperparameter_data = [
