@@ -1,121 +1,61 @@
 # ML for CAE: Cantilever Beam Prediction Explorer
 
-A physics-guided Machine Learning proof of concept for CAE design-space exploration using a cantilever beam benchmark problem.
+Physics-guided Machine Learning for CAE using a cantilever beam problem.
 
-This project demonstrates how ML can support engineering understanding, faster design exploration, and early decision-making without replacing CAE or physics-based validation.
+This project demonstrates how Machine Learning can support engineering design exploration by comparing conventional physics calculations with selected ML models and interpolation approaches.
 
-## Objective
+## Live App
 
-The objective of this project is to understand how Machine Learning can be applied to engineering design and development workflows by comparing:
+🚀 Streamlit App:
 
-- Physics-based ground truth calculations
-- Machine Learning regressors
-- Neural Networks
-- RBF-based surrogate / interpolation / Response Surface Models
+https://ml-for-cae-cantilever-beam-poc.streamlit.app/
 
-## Problem Definition
+## Project Highlights
 
-The study uses a cantilever beam with:
+- Physics-based cantilever beam calculations
+- DOE using ULH/LHS sampling
+- Feature Engineering based on beam mechanics
+- Multiple ML approaches:
+  - Linear Regression
+  - Random Forest
+  - XGBoost
+  - Neural Networks
+  - RBF Interpolator
 
-- Length `L`
-- Width `b`
-- Height `h`
-- Elastic modulus `E`
-- Applied point load `F`
+- Engineering validation framework:
+  - Train/Validation/Test split
+  - Cross-validation
+  - Fair validation cases
+  - Edge case validation
 
-The predicted responses are:
+## Tech Stack
 
-- Deflection
-- Bending stress
-
-## Methodology
-
-The project follows a complete ML-for-CAE workflow:
-
-1. Data generation using ULH / LHS sampling
-2. Physics-based response calculation
-3. Sensitivity study using Pearson and Spearman correlations
-4. Physics-guided feature engineering
-5. Train / validation / test split
-6. Model development and comparison
-7. Cross-validation and iteration studies
-8. Fair and edge-case engineering validation
-9. Interactive Streamlit application
-
-## Models Explored
-
-The study started with Linear Regression as a baseline and progressed through:
-
-- Linear Regression
-- Random Forest
-- Gradient Boosting
+- Python
+- Streamlit
+- Scikit-learn
+- TensorFlow
 - XGBoost
-- Neural Networks
-- RBF Interpolators / Response Surface Models
+- Plotly
+- Pandas
 
-The deployed app compares selected representative models:
-
-- Random Forest
-- XGBoost
-- Neural Network
-- RBF Interpolator
-
-## App Features
-
-The Streamlit app includes:
-
-- Physics vs ML prediction comparison
-- Best model identification for deflection and stress
-- Engineering interpretation for each prediction
-- Input range check against trained design space
-- Model credibility panel
-- R², MAE, and RMSE visualization
-- Hyperparameter summary
-- Fair and edge-case validation
-- Data generation and sensitivity study visuals
-- Feature engineering explanation
-
-## Engineering Philosophy
-
-This project is not intended to replace CAE or conventional engineering validation.
-
-The intent is to explore how ML can support:
-
-- Faster design-space exploration
-- Early-stage engineering guidance
-- Sensitivity understanding
-- Quick comparison of candidate designs
-- Better preparation before detailed CAE validation
-
-Final engineering decisions should still rely on physics understanding, CAE validation, and conventional engineering review.
-
-## Repository Structure
+## Project Structure
 
 ```text
-app/
-    app.py
+ml-for-cae-cantilever-beam-poc/
+│
+├── app/
+├── app_data/
+├── app_models/
+├── config/
+├── outputs/
+├── src/
+├── main.py
+├── requirements.txt
+└── readme.md
+```
 
-app_data/
-    Beam.png
-    model_metrics_summary.csv
+## Disclaimer
 
-app_models/
-    neural_network/
+This project does not replace conventional CAE or engineering validation.
 
-config/
-    config.yml
-
-outputs/
-    plots/
-        metrics_from_data_generation/
-        sensitivity_analysis/
-
-src/
-    feature_builder.py
-    model_loader.py
-    physics.py
-    predictor.py
-    validation.py
-
-main.py
-requirements.txt
+The objective is to accelerate design exploration and support engineering decision-making.
