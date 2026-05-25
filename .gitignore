@@ -28,8 +28,8 @@ outputs/metrics/*.json
 *.log
 
 # Build artifacts
-*.pkl
-*.joblib
+# *.pkl
+# *.joblib
 
 # Folders
 notion_pages/
