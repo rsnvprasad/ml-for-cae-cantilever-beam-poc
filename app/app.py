@@ -292,10 +292,9 @@ if predict_clicked:
 
             with st.expander("Metrics Interpretation Guide"):
 
+                st.markdown("### R² (Coefficient of Determination)")
+                st.latex(r"R^2 = 1 - \frac{\sum (y_i - \hat{y}_i)^2}{\sum (y_i - \bar{y})^2}")
                 st.markdown("""
-            ### R² (Coefficient of Determination)
-            st.latex(r"R^2 = 1 - \frac{\sum (y_i - \hat{y}_i)^2}{\sum (y_i - \bar{y})^2}")
-            st.markdown("""
             Where:
 
             - `yᵢ` = actual value  
@@ -304,6 +303,7 @@ if predict_clicked:
             - `n` = number of samples
             """)
 
+                st.markdown("""
             Measures how well the model explains the response variation.
 
             **Interpretation:**
@@ -318,8 +318,9 @@ if predict_clicked:
             ---
 
             ### MAE (Mean Absolute Error)
-            st.latex(r"MAE = \frac{1}{n}\sum |y_i - \hat{y}_i|")
-
+            """)
+                st.latex(r"MAE = \frac{1}{n}\sum |y_i - \hat{y}_i|")
+                st.markdown("""
             Average magnitude of prediction error.
 
             Example:
@@ -335,8 +336,32 @@ if predict_clicked:
             ---
 
             ### RMSE (Root Mean Square Error)
-            st.latex(r"RMSE = \sqrt{\frac{1}{n}\sum (y_i - \hat{y}_i)^2}")
+            """)
+                st.latex(r"RMSE = \sqrt{\frac{1}{n}\sum (y_i - \hat{y}_i)^2}")
+                st.markdown("""
             Similar to MAE, but penalizes larger prediction errors more strongly.
+
+            Engineering goal:
+            - Lower is better
+            - Useful for detecting large prediction deviations
+
+            ---
+
+            ### General Engineering Interpretation
+
+            Ideal model behavior:
+
+            -> High R²  
+            -> Low MAE  
+            -> Low RMSE  
+
+            However, model selection should also consider:
+
+            - Generalization performance
+            - Fair/Edge validation behavior
+            - Physical consistency
+            - Engineering plausibility
+            """)
 
             Engineering goal:
             - Lower is better
